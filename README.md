@@ -131,6 +131,62 @@ Parameters:
 - `score_function` (Callable[[Tensor, Tensor], Tensor], optional):
   Function for computing scores. By default, cosine similarity.
 
+## 3. BM25: Best Matching 25
+
+BM25 is a ranking function widely used in search engines and information retrieval to score the relevance of documents to a given query. It improves on traditional methods like TF-IDF by incorporating mechanisms for term saturation and document length normalization.
+
+### Key Features
+
+| **Feature**                     | **Description**                                                                 |
+|----------------------------------|---------------------------------------------------------------------------------|
+| **Term Frequency (TF)**          | Measures how often a term appears in a document, adjusted for saturation.      |
+| **Inverse Document Frequency**   | Reduces the importance of common terms and emphasizes rare, discriminative ones.|
+| **Document Length Normalization**| Normalizes scores to avoid bias toward longer documents.                        |
+
+### BM25 Formula
+
+The relevance score of a document \( D \) for a query \( Q \) is calculated as:
+
+\[
+\text{BM25}(D, Q) = \sum_{t \in Q} \text{IDF}(t) \cdot \frac{\text{TF}(t, D) \cdot (k_1 + 1)}{\text{TF}(t, D) + k_1 \cdot (1 - b + b \cdot \frac{|D|}{\text{avgD}})}
+\]
+
+Where:
+- \( \text{IDF}(t) = \log \frac{N - n_t + 0.5}{n_t + 0.5} \)
+  - \( N \): Total number of documents.
+  - \( n_t \): Number of documents containing term \( t \).
+- \( \text{TF}(t, D) \): Frequency of term \( t \) in document \( D \).
+- \( |D| \): Length of document \( D \).
+- \( \text{avgD} \): Average document length.
+- \( k_1 \): Controls term frequency saturation (default: 1.2–2.0).
+- \( b \): Controls document length normalization (default: 0.75).
+
+### Parameters
+
+| **Parameter** | **Effect**                                                                               |
+|---------------|-----------------------------------------------------------------------------------------|
+| **`k1`**      | Controls the impact of term frequency (higher values increase term saturation).         |
+| **`b`**       | Adjusts document length normalization (0 = no normalization, 1 = full normalization). |
+
+### Advantages
+
+- **Effective Ranking**: Balances term frequency, rarity, and document length.
+- **Customizable**: Tunable parameters \( k_1 \) and \( b \) for different scenarios.
+- **Simplicity**: Straightforward to implement and interpret.
+
+### Use Cases
+
+- **Search Engines**: Ranking web pages or documents based on query relevance.
+- **Information Retrieval**: Recommender systems and hybrid search.
+- **Text Mining**: Locating relevant information in large text datasets.
+
+## Summary
+BM25 is a powerful ranking function designed for efficient and effective document retrieval. It combines:
+1. **TF-IDF** to weigh terms by importance and frequency.
+2. **Document length normalization** to handle documents of varying sizes.
+
+Its tunable parameters make it adaptable for various applications, from search engines to large-scale text mining.
+
 
 ## Conclusion
 # Comparison: `all-mpnet-base-v2` vs `all-MiniLM-L6-v2`
