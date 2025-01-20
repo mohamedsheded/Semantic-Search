@@ -159,8 +159,28 @@ This table compares key attributes of the `all-mpnet-base-v2` and `all-MiniLM-L6
 
 Choose the model based on your application's requirements for embedding quality, speed, and scale.
 ---
-# comparison of search types
+# Difference Between `util.cos_sim` and `util.semantic_search`
 
+This table compares the key differences between the `util.cos_sim` and `util.semantic_search` methods in SentenceTransformers:
+
+| **Aspect**            | **`util.cos_sim`**                           | **`util.semantic_search`**                        |
+|------------------------|---------------------------------------------|--------------------------------------------------|
+| **Primary Function**   | Computes cosine similarity between embeddings. | Ranks documents by relevance to queries.         |
+| **Output**             | Similarity matrix (`n x m`).                | Ranked list of top matches for each query.       |
+| **Use Case**           | Comparing embeddings directly.              | Retrieving top-k relevant results.               |
+| **Scalability**        | Lightweight, direct computation.            | Optimized for large-scale search.                |
+
+### Summary
+
+- **`util.cos_sim`**:
+  - Computes a similarity matrix directly between two sets of embeddings.
+  - Useful for small-scale comparisons or analysis.
+
+- **`util.semantic_search`**:
+  - Optimized for searching and ranking large datasets.
+  - Returns the most relevant matches for a given query with scores and IDs.
+# comparison of search types
+---
 | **Feature**             | **Hybrid Search**                                       | **Semantic Search**                                   | **Keyword Search**                                   |
 |-------------------------|---------------------------------------------------------|------------------------------------------------------|------------------------------------------------------|
 | **Search Approach**      | Combines traditional keyword search and semantic search (using vector-based retrieval). | Focuses on the meaning of the query and documents using embeddings. | Relies on exact matching of query terms with document terms. |
