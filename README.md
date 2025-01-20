@@ -145,21 +145,19 @@ BM25 is a ranking function widely used in search engines and information retriev
 
 ### BM25 Formula
 
-The relevance score of a document \( D \) for a query \( Q \) is calculated as:
+The relevance score of a document \(D\) for a query \(Q\) is calculated as:
 
-\[
-\text{BM25}(D, Q) = \sum_{t \in Q} \text{IDF}(t) \cdot \frac{\text{TF}(t, D) \cdot (k_1 + 1)}{\text{TF}(t, D) + k_1 \cdot (1 - b + b \cdot \frac{|D|}{\text{avgD}})}
-\]
+BM25(D, Q) = Σ (for each t in Q) [ IDF(t) * (TF(t, D) * (k1 + 1)) / (TF(t, D) + k1 * (1 - b + b * (|D| / avgD))) ]
 
 Where:
-- \( \text{IDF}(t) = \log \frac{N - n_t + 0.5}{n_t + 0.5} \)
-  - \( N \): Total number of documents.
-  - \( n_t \): Number of documents containing term \( t \).
-- \( \text{TF}(t, D) \): Frequency of term \( t \) in document \( D \).
-- \( |D| \): Length of document \( D \).
-- \( \text{avgD} \): Average document length.
-- \( k_1 \): Controls term frequency saturation (default: 1.2–2.0).
-- \( b \): Controls document length normalization (default: 0.75).
+- IDF(t) = log((N - n_t + 0.5) / (n_t + 0.5))
+  - N: Total number of documents.
+  - n_t: Number of documents containing term \(t\).
+- TF(t, D): Frequency of term \(t\) in document \(D\).
+- |D|: Length of document \(D\).
+- avgD: Average document length across the corpus.
+- k1: Controls term frequency saturation (default: 1.2–2.0).
+- b: Controls document length normalization (default: 0.75).
 
 ### Parameters
 
