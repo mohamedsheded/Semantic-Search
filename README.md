@@ -133,6 +133,33 @@ Parameters:
 
 
 ## Conclusion
+# Comparison: `all-mpnet-base-v2` vs `all-MiniLM-L6-v2`
+
+This table compares key attributes of the `all-mpnet-base-v2` and `all-MiniLM-L6-v2` embedding models from SentenceTransformers:
+
+| **Attribute**          | **`all-mpnet-base-v2`**                              | **`all-MiniLM-L6-v2`**                     |
+|-------------------------|------------------------------------------------------|--------------------------------------------|
+| **Embedding Dimension** | 768                                                  | 384                                        |
+| **Context Length**      | 512 tokens                                           | 384 tokens                                 |
+| **Model Size**          | Large (110M parameters)                              | Smaller (22M parameters)                   |
+| **Speed**               | Slower                                               | Faster                                     |
+| **Use Case**            | High-quality embeddings for detailed representations | Lightweight, fast embeddings for real-time or large-scale tasks |
+
+### Summary
+
+- **`all-mpnet-base-v2`**:
+  - Embedding size of 768.
+  - Supports up to 512 tokens.
+  - Suitable for tasks requiring high-quality embeddings, such as semantic search, clustering, or advanced NLP tasks.
+
+- **`all-MiniLM-L6-v2`**:
+  - Embedding size of 384.
+  - Supports up to 384 tokens.
+  - Ideal for real-time or large-scale applications where speed and efficiency are crucial.
+
+Choose the model based on your application's requirements for embedding quality, speed, and scale.
+---
+# comparison of search types
 
 | **Feature**             | **Hybrid Search**                                       | **Semantic Search**                                   | **Keyword Search**                                   |
 |-------------------------|---------------------------------------------------------|------------------------------------------------------|------------------------------------------------------|
